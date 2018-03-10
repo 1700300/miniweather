@@ -24,10 +24,10 @@ public class City {
      public void setCityCode(String cityCode) {
     	 this.cityCode = cityCode;
      }
-     public int getprovinceId() {
+     public int getProvinceId() {
     	 return provinceId;
      }
-     public void setprovinceId(int provinceId) {
+     public void setProvinceId(int provinceId) {
     	 this.provinceId =provinceId;
      }
 }
