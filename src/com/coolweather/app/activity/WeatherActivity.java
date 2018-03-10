@@ -7,8 +7,7 @@ import com.coolweather.app.util.Utility;
 
 
 import android.app.Activity;
-
-
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -17,7 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
-//import android.widget.Button;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -53,11 +52,11 @@ public class WeatherActivity extends Activity implements OnClickListener{
 	/**
 	 * 切换城市按钮
 	 */
-	//private Button switchCity;
+	private Button switchCity;
 	/**
 	 * 更新天气按钮
 	 */
-	//private Button refreshWeather;
+	private Button refreshWeather;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +74,8 @@ public class WeatherActivity extends Activity implements OnClickListener{
 		temp2Text = (TextView)findViewById(R.id.temp2);
 		currentDateText = (TextView)findViewById(R.id.current_date);
 		Log.d("result", "fidViewById");
-	//	switchCity = (Button)findViewById(R.id.switch_city);
-	//	refreshWeather = (Button)findViewById(R.id.refresh_weather);
+		switchCity = (Button)findViewById(R.id.switch_city);
+		refreshWeather = (Button)findViewById(R.id.refresh_weather);
 		String countyCode = getIntent().getStringExtra("county_code");
 		if (!TextUtils.isEmpty(countyCode)) {
 			//有县级代号时就去查询天气
@@ -89,11 +88,11 @@ public class WeatherActivity extends Activity implements OnClickListener{
 			showWeather();
 		}
 		Log.d("result","setOnClickb");
-		//switchCity.setOnClickListener(this);
-		//refreshWeather.setOnClickListener(this);
+		switchCity.setOnClickListener(this);
+		refreshWeather.setOnClickListener(this);
 		Log.d("result","setOnClick");
 	}
-	/**
+
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -110,6 +109,8 @@ public class WeatherActivity extends Activity implements OnClickListener{
 			if (!TextUtils.isEmpty(weatherCode)) {
 				queryWeatherInfo(weatherCode);
 			}
+			break;
+		default:
 			break;
 		}
 	}
@@ -183,9 +184,5 @@ public class WeatherActivity extends Activity implements OnClickListener{
 		weatherInfoLayout.setVisibility(View.VISIBLE);
 		cityNameText.setVisibility(View.VISIBLE);
 	}
-	@Override
-	public void onClick(View v) {
-		// TODO 自动生成的方法存根
-		
-	}
+
 }
